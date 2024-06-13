@@ -47,6 +47,7 @@ namespace CosmicCuration.Bullets {
         {
             public bool isUsed;
             public BulletController bullet;
+
         }
     }
 }
