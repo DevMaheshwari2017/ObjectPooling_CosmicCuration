@@ -38,9 +38,9 @@ namespace CosmicCuration.Utilities
             throw new NotImplementedException(" CreateItem function not implemented in the base class");
         }
 
-        public void Returnitem(T item) 
+        public void Returnitem(T _item) 
         {
-            PooledItem<T> pooledItem = pooledItems.Find(item => item.Item.Equals(item));
+            PooledItem<T> pooledItem = pooledItems.Find(item => item.Item.Equals(_item));        
             pooledItem.isUsed = false;
         }
         public class PooledItem<T> 
