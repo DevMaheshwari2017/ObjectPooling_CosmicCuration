@@ -17,7 +17,7 @@ namespace CosmicCuration.Utilities
                 if (pooledItem != null) 
                 {
                     pooledItem.isUsed = true;
-                    return pooledItem.item;
+                    return pooledItem.Item;
                 }
             }
             return CreateNewPooledItem();
@@ -26,20 +26,26 @@ namespace CosmicCuration.Utilities
         private T CreateNewPooledItem() 
         {
             PooledItem<T> pooledItem = new PooledItem<T>();
-            pooledItem.item = CreateItem();
+            pooledItem.Item = CreateItem();
             pooledItem.isUsed = true;
             pooledItems.Add(pooledItem);
 
-            return pooledItem.item;
+            return pooledItem.Item;
         }
 
         protected virtual T CreateItem() 
         {
             throw new NotImplementedException(" CreateItem function not implemented in the base class");
         }
+
+        public void Returnitem(T item) 
+        {
+            PooledItem<T> pooledItem = pooledItems.Find(item => item.Item.Equals(item));
+            pooledItem.isUsed = false;
+        }
         public class PooledItem<T> 
         {
-            public T item;
+            public T Item;
             public bool isUsed;
         }
     }
