@@ -1,3 +1,6 @@
+
+using System.Collections.Generic;
+
 using CosmicCuration.Utilities;
 
 namespace CosmicCuration.Enemy
@@ -16,5 +19,6 @@ namespace CosmicCuration.Enemy
         public EnemyController GetEnemy() => GetItem();
 
         protected override EnemyController CreateItem() => new EnemyController(enemyPrefab, enemyData);
+
     }
 }

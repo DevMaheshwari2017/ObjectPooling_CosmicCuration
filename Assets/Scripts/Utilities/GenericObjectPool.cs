@@ -7,9 +7,11 @@ namespace CosmicCuration.Utilities
     /// This is a Generic Object Pool Class with basic functionality, which can be inherited to implement object pools for any type of objects.
     /// </summary>
     /// <typeparam object Type to be pooled = "T"></typeparam>
+
     public class GenericObjectPool<T> where T : class
     {
         public List<PooledItem<T>> pooledItems = new List<PooledItem<T>>();
+
 
         protected T GetItem()
         {
@@ -46,9 +48,11 @@ namespace CosmicCuration.Utilities
         }
 
         public class PooledItem<T>
+
         {
             public T Item;
             public bool isUsed;
         }
     }
 }
+
