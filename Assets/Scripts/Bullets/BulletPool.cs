@@ -1,4 +1,6 @@
+
 using System.Collections.Generic;
+
 using CosmicCuration.Utilities;
 
 namespace CosmicCuration.Bullets
@@ -16,8 +18,7 @@ namespace CosmicCuration.Bullets
 
         public BulletController GetBullet() => GetItem();
 
-    protected override BulletController CreateItem() => new BulletController(bulletPrefab, bulletSO);
-
-}
+        protected override BulletController CreateItem() => new BulletController(bulletPrefab, bulletSO);
+    }
 }
 
