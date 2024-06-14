@@ -52,7 +52,6 @@ namespace CosmicCuration.Enemy
         {
             // Get a random orientation for the enemy (Up / Down / Left / Right)
             EnemyOrientation randomOrientation = (EnemyOrientation)Random.Range(0, Enum.GetValues(typeof(EnemyOrientation)).Length);
-
             // Calculate a spawn position outside the game screen according to the orientation and spawn an enemy.
             SpawnEnemyAtPosition(CalculateSpawnPosition(randomOrientation), randomOrientation);
         }
@@ -110,6 +109,7 @@ namespace CosmicCuration.Enemy
         public void SetEnemySpawning(bool setActive) => isSpawning = setActive;
 
         public void ReturnEnemyToPool(EnemyController enemyToReturn) => enemyPool.ReturnItem(enemyToReturn);
+
     }
 
     public enum EnemyOrientation
