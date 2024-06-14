@@ -32,9 +32,9 @@ namespace CosmicCuration.Bullets
                 collidedGameObject.GetComponent<IDamageable>().TakeDamage(bulletScriptableObject.damage);
                 GameService.Instance.GetSoundService().PlaySoundEffects(SoundType.BulletHit);
                 GameService.Instance.GetVFXService().PlayVFXAtPosition(VFXType.BulletHitExplosion, bulletView.transform.position);
-                //Object.Destroy(bulletView.gameObject);
-                GameService.Instance.GetPlayerService().ReturnBullet(this);
                 bulletView.gameObject.SetActive(false);
+                GameService.Instance.GetPlayerService().ReturnBulletToPool(this);
+
             }
         }
     }

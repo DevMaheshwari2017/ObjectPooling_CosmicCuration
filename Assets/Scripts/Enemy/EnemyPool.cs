@@ -1,54 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using CosmicCuration.Utilities;
 
 namespace CosmicCuration.Enemy
 {
-    public class EnemyPool
+    public class EnemyPool : GenericObjectPool<EnemyController>
     {
-        private EnemyView enemyView;
+        private EnemyView enemyPrefab;
         private EnemyData enemyData;
-        private List<PooledEnemy> pooledEnemies = new List<PooledEnemy>();
 
-        public EnemyPool(EnemyView enemyView, EnemyData enemyData) 
+        public EnemyPool(EnemyView enemyPrefab, EnemyData enemyData)
         {
-            this.enemyView = enemyView;
+            this.enemyPrefab = enemyPrefab;
             this.enemyData = enemyData;
         }
 
-        public EnemyController GetEnemy() 
-        {
-            if (pooledEnemies.Count > 0) 
-            {
-                PooledEnemy pooledEnemy = pooledEnemies.Find(item => !item.isUsed);
-                if (pooledEnemy != null)
-                {
-                    pooledEnemy.isUsed = true;
-                    return pooledEnemy.enemy;
-                }
-            }
-           return CreateNewPooledEnemies();
-        }
+        public EnemyController GetEnemy() => GetItem();
 
-        public void ReturnedEnemy(EnemyController returnedEnemy)
-        {
-            PooledEnemy pooledEnemy = pooledEnemies.Find(item => item.enemy.Equals(returnedEnemy));
-            pooledEnemy.isUsed = false;
-        }
+        protected override EnemyController CreateItem() => new EnemyController(enemyPrefab, enemyData);
 
-        private EnemyController CreateNewPooledEnemies() 
-        {
-            PooledEnemy pooledEnemy = new PooledEnemy();
-            pooledEnemy.enemy = new EnemyController(enemyView,enemyData);
-            pooledEnemy.isUsed = true;
-            pooledEnemies.Add(pooledEnemy);
-
-            return pooledEnemy.enemy;
-        }
-        public class PooledEnemy 
-        {
-            public EnemyController enemy;
-            public bool isUsed;
-        }
     }
 }

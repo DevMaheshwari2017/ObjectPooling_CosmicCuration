@@ -5,6 +5,7 @@ namespace CosmicCuration.Player
 {
     public class PlayerService
     {
+        private BulletPool bulletPool;
         private PlayerController playerController;
         private BulletPool bulletPool;
 
@@ -18,6 +19,8 @@ namespace CosmicCuration.Player
         public PlayerController GetPlayerController() => playerController;
 
         public Vector3 GetPlayerPosition() => playerController.GetPlayerPosition();
+        
+        public void ReturnBulletToPool(BulletController bulletToReturn) => bulletPool.Returnitem(bulletToReturn);
         
     } 
 }

@@ -1,53 +1,23 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using CosmicCuration.Utilities;
 
-namespace CosmicCuration.Bullets {
-
-    public class BulletPool
+namespace CosmicCuration.Bullets
+{
+    public class BulletPool : GenericObjectPool<BulletController>
     {
-        private BulletView bulletView;
-        private BulletScriptableObject bulletScriptableObject;
-        private List<PooledBullet> pooledBullets = new List<PooledBullet>();
-        public BulletPool(BulletView bulletView, BulletScriptableObject bulletScriptableObject)
+        private BulletView bulletPrefab;
+        private BulletScriptableObject bulletSO;
+
+        public BulletPool(BulletView bulletPrefab, BulletScriptableObject bulletSO)
         {
-            this.bulletView = bulletView;
-            this.bulletScriptableObject = bulletScriptableObject;
+            this.bulletPrefab = bulletPrefab;
+            this.bulletSO = bulletSO;
         }
 
-        public void ReturnBullet(BulletController returnedBullet) 
-        {
-            PooledBullet pooledBullet = pooledBullets.Find(item => item.bullet.Equals(returnedBullet));
-            pooledBullet.isUsed = false;
-        }
+        public BulletController GetBullet() => GetItem();
 
-        public BulletController GetBullet() 
-        {
-            if (pooledBullets.Count > 0) 
-            {
-                PooledBullet pooledBullet = pooledBullets.Find(item => !item.isUsed);
-                if (pooledBullet != null) 
-                {
-                    pooledBullet.isUsed = true;
-                    return pooledBullet.bullet;
-                }
-            }
-            return CreateNewPooledBullet();
-        }
-        private BulletController CreateNewPooledBullet() 
-        {
-            PooledBullet pooledBullet = new PooledBullet();
-            pooledBullet.bullet = new BulletController(bulletView, bulletScriptableObject);
-            pooledBullet.isUsed = true;
-            pooledBullets.Add(pooledBullet);
+    protected override BulletController CreateItem() => new BulletController(bulletPrefab, bulletSO);
 
-            return pooledBullet.bullet;
-        }
-        public class PooledBullet
-        {
-            public bool isUsed;
-            public BulletController bullet;
-
-        }
-    }
 }
+}
+
