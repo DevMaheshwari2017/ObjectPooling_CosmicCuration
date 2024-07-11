@@ -29,5 +29,12 @@ Cosmic Curration not only showcases my ability to create engaging gameplay but a
 
 ## Preview
 
+
+### [Web-To-Play](https://outscal.com/devmaheswari2017/game/play-cosmic-curration--1-game)
+
+
+### Gameplay video :
+
+
 [![Cosmic Curration Video](https://img.youtube.com/vi/6WypqQ-enEc/0.jpg)](https://www.youtube.com/watch?v=6WypqQ-enEc)
 
