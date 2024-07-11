@@ -29,5 +29,5 @@ Cosmic Curration not only showcases my ability to create engaging gameplay but a
 
 ## Preview
 
-[![Cosmic Curration Video(https://img.youtube.com/vi/6WypqQ-enEc/0.jpg)](https://www.youtube.com/watch?v=6WypqQ-enEc)
+[![Cosmic Curration Video](https://img.youtube.com/vi/6WypqQ-enEc/0.jpg)](https://www.youtube.com/watch?v=6WypqQ-enEc)
 
