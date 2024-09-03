@@ -72,7 +72,7 @@ namespace CosmicCuration.Player
         private void HandleShooting()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                FireWeapon();
+               FireWeapon();
             if (Input.GetKeyUp(KeyCode.Space))
                 currentShootingState = ShootingState.NotFiring;
         }
@@ -94,6 +94,7 @@ namespace CosmicCuration.Player
                         break;
                 }
                 await Task.Delay(Mathf.RoundToInt(currentRateOfFire * 1000));
+                
             }
         }
 
@@ -120,10 +121,10 @@ namespace CosmicCuration.Player
             }
 
             if (currentHealth <= 0)
-                PlayerDeath();
+              PlayerDeath();
         }
 
-        private async void PlayerDeath()
+        private void PlayerDeath()
         {
             Object.Destroy(playerView.gameObject);
             
@@ -133,9 +134,10 @@ namespace CosmicCuration.Player
             currentShootingState = ShootingState.NotFiring;
             GameService.Instance.GetEnemyService().SetEnemySpawning(false);
             GameService.Instance.GetPowerUpService().SetPowerUpSpawning(false);
-            
+
             // Wait for Player Ship Destruction.
-            await Task.Delay(playerScriptableObject.deathDelay * 1000);
+            //await Task.Delay(playerScriptableObject.deathDelay * 1000);
+           // yield return new WaitForSeconds(playerScriptableObject.deathDelay);
             GameService.Instance.GetUIService().EnableGameOverUI();
         }
 
